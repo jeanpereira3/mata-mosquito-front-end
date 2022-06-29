@@ -1,0 +1,84 @@
+/*Animacao de entrada da mosca*/
+@keyframes fadeMosca {
+    from {
+        width: 0;
+        height: 0;
+    }
+
+}
+
+/*Animacao de saida do spash*/
+@keyframes outSplash {
+    to {
+        opacity: 0;
+    }
+}
+
+
+
+html {
+    cursor: url('../images/mata_mosca.png') 30 30, auto;
+}
+
+body {
+    background: url('../images/bg.jpg') no-repeat;
+    background-size: cover;
+
+}
+
+#splash {
+    animation: outSplash 0.5s;
+}
+
+.mosca1 {
+    width: 60px;
+    height: 60px;
+    animation: fadeMosca 0.4s;
+}
+
+.mosca2 {
+    width: 80px;
+    height: 80px;
+    animation: fadeMosca 0.4s;
+}
+
+.mosca3 {
+    width: 100px;
+    height: 100px;
+    animation: fadeMosca 0.4s;
+}
+
+.ladoA {
+    transform: scaleX(1);
+}
+
+.ladoB {
+    transform: scaleX(-1);
+}
+
+.painel {
+    position: absolute;
+    width: 190px;
+    padding: 10px;
+    bottom: 0px;
+    left: 0;
+    border-top: 1px solid #fff;
+    background-color: #fff;
+    opacity: 0.7;
+}
+
+.vidas {
+    float: left;
+}
+
+.cronometro {
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pontos {
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+}
