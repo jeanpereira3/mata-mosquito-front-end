@@ -6,6 +6,7 @@ var criaMoscaTempo = 1500
 var nivel = window.location.search.replace('?', '')
 var pontos = 0
 var contVelocidade = 0
+var fullscreenElement = document.fullscreenElement
 
 //Tempo de criacao de mosca
 if (nivel === 'normal') {
@@ -136,3 +137,5 @@ function ladoAleatorio() {
             return 'ladoB'
     }
 }
+
+

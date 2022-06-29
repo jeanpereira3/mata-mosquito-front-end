@@ -14,7 +14,9 @@
     }
 }
 
-
+img {
+    max-width: 100%;
+}
 
 html {
     cursor: url('../images/mata_mosca.png') 30 30, auto;
@@ -23,6 +25,7 @@ html {
 body {
     background: url('../images/bg.jpg') no-repeat;
     background-size: cover;
+    height: 100vh;
 
 }
 
