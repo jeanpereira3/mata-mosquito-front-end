@@ -1,7 +1,7 @@
 var largura = 0
 var altura = 0
 var vidas = 1
-var tempo = 10
+var tempo = 60
 var criaMoscaTempo = 1500
 var nivel = window.location.search.replace('?', '')
 var pontos = 0
@@ -87,6 +87,7 @@ function posicaoRandomica() {
     document.body.appendChild(mosca)
     mosca.id = 'mosca'
     mosca.onclick = function () {
+        tocarSplash()
         this.src = 'images/splash_red.png'
         this.id = 'splash'
         var splash = setTimeout(() => {
@@ -137,5 +138,11 @@ function ladoAleatorio() {
             return 'ladoB'
     }
 }
+
+function tocarSplash() {
+    document.getElementById('somGolpe').play()
+
+}
+
 
 
