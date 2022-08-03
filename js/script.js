@@ -61,7 +61,8 @@ function posicaoRandomica() {
     if (document.getElementById('mosca')) {
         document.getElementById('mosca').remove()
         if (vidas > 3) {
-            window.location.href = 'fim_de_jogo.html'
+            window.location.href = 'fim_de_jogo.html?' + pontos
+
         } else {
             document.getElementById('v' + vidas++).src = "images/coracao_vazio.png"
         }
@@ -143,6 +144,7 @@ function tocarSplash() {
     document.getElementById('somGolpe').play()
 
 }
+
 
 
 

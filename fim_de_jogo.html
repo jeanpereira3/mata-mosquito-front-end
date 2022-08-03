@@ -8,7 +8,60 @@
     <title>Game Over</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
+        });
+
+        let pontos = window.location.search.replace('?', '')
+
+
+
+        function fazPost(url, body) {
+
+            let objJson = JSON.stringify(body)
+            let xmlHttpRequest = new XMLHttpRequest()
+            xmlHttpRequest.open("POST", url, true)
+            xmlHttpRequest.setRequestHeader('Content-type', 'application/json')
+            xmlHttpRequest.send(objJson)
+
+
+
+        }
+
+        function salvarRecorde() {
+            if (pontos != '' || nome != '') {
+                event.preventDefault()
+                let nome = document.getElementById('nomePlayer').value
+
+                let url = `https://com-jean-mata-mosca.herokuapp.com/players`
+
+
+                body = {
+                    "score": pontos,
+                    "name": nome,
+                }
+                fazPost(url, body)
+            }
+
+        }
+
+    </script>
+
 
 </head>
 
@@ -29,6 +82,33 @@
                 <div class="d-flex justify-content-center">
                     <button onclick="window.location.href = 'index.html'" type="button"
                         class="btn btn-dark btn-lg">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true" style="text-align: center;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Salve seu recorde</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-group">
+                                <input type="text" id="nomePlayer" class="form-control mb-2" placeholder="Chico"
+                                    required>
+                                <button type="button" class="btn btn-primary form-control" data-dismiss="modal"
+                                    onclick="salvarRecorde()">Salvar mudanças</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

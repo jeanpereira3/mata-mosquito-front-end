@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitoria</title>
+    <title>Inicial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -20,10 +20,56 @@
             window.location.href = 'app.html?' + nivel
 
         }
+
+        function carregarRecordes() {
+            let url = 'https://com-jean-mata-mosca.herokuapp.com/players'
+            let xmlHttpRequest = new XMLHttpRequest()
+            xmlHttpRequest.open('GET', url, false)
+
+
+            xmlHttpRequest.onreadystatechange = () => {
+
+                let dadosJsonText = xmlHttpRequest.responseText
+                let dadosJsonObj = JSON.parse(dadosJsonText)
+                let content = dadosJsonObj.content
+                let cont = 1
+
+                if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+
+                    content.forEach(function (player) {
+                        console.log(player);
+                        let tbody = document.getElementById('tbody-score')
+                        let recorde = document.createElement('tr')
+                        let posicao = document.createElement('td')
+                        let score = document.createElement('td')
+                        let nome = document.createElement('td')
+                        let data = document.createElement('td')
+
+
+                        posicao.innerHTML = cont++
+
+                        score.innerHTML = player.score
+                        nome.innerHTML = player.name
+                        data.innerHTML = player.date
+
+                        recorde.appendChild(posicao)
+                        recorde.appendChild(nome)
+                        recorde.appendChild(score)
+
+                        recorde.appendChild(data)
+                        tbody.appendChild(recorde)
+
+                    })
+
+                }
+            }
+
+            xmlHttpRequest.send()
+        }
     </script>
 </head>
 
-<body>
+<body onload="carregarRecordes()">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -54,6 +100,26 @@
             <div class="col">
                 <div class="d-flex justify-content-center">
                     <button onclick="iniciarjogo()" type="button" class="btn btn-danger btn-lg">Iniciar Jogo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <div class="tb-score mt-2">
+                    <table class="table table-striped text-center table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Pontuação</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-score">
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
