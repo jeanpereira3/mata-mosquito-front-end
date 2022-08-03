@@ -45,7 +45,7 @@ var cronometro = setInterval(() => {
         if (tempo < 0) {
             clearInterval(cronometro)
             clearInterval(criaMosca)
-            window.location.href = 'vitoria.html'
+            window.location.href = 'vitoria.html?' + pontos
         } else {
             document.getElementById('cronometro').innerHTML = tempo
         }
